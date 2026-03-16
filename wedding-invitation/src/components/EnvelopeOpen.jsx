@@ -41,7 +41,7 @@ export default function Envelope3D({ onOpen }) {
                     className="absolute text-center z-20"
                 >
                     <h1 className="text-5xl md:text-6xl font-bold text-yellow-500 drop-shadow-lg">
-                        بِسْمِ ٱللَّٰهِ
+                        بِسْمِ ٱللّٰهِ ٱلرَّحْمٰنِ ٱلرَّحِيمِ
                     </h1>
 
                     <p className="mt-4 text-gray-600">
