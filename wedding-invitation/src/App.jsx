@@ -1,4 +1,4 @@
-import img from "./assets/img2.jpg"
+import img from "./assets/d.jpeg"
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -6,7 +6,7 @@ import RosePetals from "./components/RosePetals";
 import music from "./assets/french.mp3";
 import EnvelopeOpen from "./components/EnvelopeOpen";
 import banner from "./assets/banner.jpeg"
-import story from "./assets/story.jpeg";
+import story from "./assets/de.jpeg";
 import invitation from "./assets/invi.jpeg";
 import { FaHeart } from "react-icons/fa";
 
@@ -118,12 +118,56 @@ function App() {
       >
       </section>
 
+      {/* Our Story */}
+      <section
+        data-aos="fade-up"
+        className="py-20 bg-white text-center"
+      >
+        <div className="max-w-4xl mx-auto px-6">
+
+          {/* Title */}
+          <h2 className="text-4xl font-bold text-rose-700 mb-10">
+            Our Story
+          </h2>
+
+          {/* Story Image */}
+          <div data-aos="zoom-in" className="mb-8">
+            <img
+              src={story}
+              alt="Our Story"
+              className="rounded-xl shadow-lg w-full"
+            />
+          </div>
+
+          {/* Story Text */}
+          <div data-aos="fade-up">
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              What started as a simple friendship during our school days gradually blossomed into a
+              lifelong bond. Through the years, we have grown together, supporting
+              one another through every phase of life.
+            </p>
+
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Guided by faith, patience, and the encouragement of our families,
+              our journey has led us to this beautiful moment where we begin our
+              life together with love and gratitude.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section
         data-aos="fade-in"
-        className="h-screen flex flex-col items-center justify-center text-center bg-cover bg-center relative"
-        style={{ backgroundImage: `url(${img})` }}
+        className="h-screen flex flex-col items-center justify-center text-center relative overflow-hidden"
       >
+
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center blur-sm scale-110"
+          style={{ backgroundImage: `url(${img})` }}
+        ></div>
 
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
@@ -131,12 +175,34 @@ function App() {
         {/* Content */}
         <div className="relative z-10 text-white">
 
-          <h1 data-aos="fade-down" className="text-6xl font-bold">
-            Deena ❤️ Safwan
-          </h1>
+          <div className="text-center text-white">
 
+            <h1
+              data-aos="fade-down"
+              className="text-6xl md:text-7xl font-bold italic "
+              style={{ fontFamily: "Great Vibes, cursive" }}
+            >
+              Deena
+            </h1>
+
+            <h2
+              className="text-6xl md:text-4xl my-2"
+              style={{ fontFamily: "Great Vibes, cursive" }}
+            >
+              with
+            </h2>
+
+            <h1
+              data-aos="fade-down"
+              className="text-6xl md:text-7xl font-bold italic"
+              style={{ fontFamily: "Great Vibes, cursive" }}
+            >
+              Safwan
+            </h1>
+
+          </div>
           <p data-aos="fade-up" className="mt-6 text-xl">
-            Together with their families invite you to celebrate their wedding
+            Together with our families invite you to celebrate our wedding
           </p>
 
           <p data-aos="fade-up" data-aos-delay="200" className="mt-4 text-2xl font-semibold">
@@ -160,46 +226,12 @@ function App() {
 
         <div className="space-y-6 text-lg">
           {/* <p>💍 Nikkah – May 4, 11 AM</p> */}
-          <p>🤵 Wedding Ceremony – May 10, 11 AM</p>
+          <p>🤵 Wedding Ceremony – May 10, 11:30 AM</p>
           <p>🎉 Reception – May 10, 7 PM</p>
         </div>
       </section>
 
-      {/* Our Story */}
-      <section
-        data-aos="fade-up"
-        className="py-20 bg-white"
-      >
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
 
-          {/* Story Image */}
-          <div data-aos="fade-right">
-            <img
-              src={story}
-              alt="Our Story"
-              className="rounded-xl shadow-lg w-full"
-            />
-          </div>
-
-          {/* Story Text */}
-          <div data-aos="fade-left">
-            <h2 className="text-4xl font-bold text-rose-700 mb-6">
-              Our Story
-            </h2>
-
-            <p className="text-lg text-gray-700 leading-relaxed mb-4">
-              Our journey began with a beautiful moment that brought our hearts together.
-              Through laughter, friendship, and love, our bond grew stronger every day.
-            </p>
-
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Surrounded by the love and blessings of our families and friends,
-              we are excited to begin this new chapter of our lives together.
-            </p>
-          </div>
-
-        </div>
-      </section>
 
       {/* Location */}
       <section
@@ -241,24 +273,32 @@ function App() {
             Open in Google Maps
           </a>
         </div>
+        <h2
+          className="mt-10 text-3xl md:text-5xl text-black  "
+          style={{ fontFamily: "Great Vibes, cursive" }}
+        >
+          We can’t wait to celebrate with you !
+        </h2>
       </section>
 
-     <div className="fixed bottom-6 right-6 group z-50">
+      
 
-  <a
-    href={invitation}
-    download="wedding-invitation.jpg"
-    className="bg-white hover:bg-rose-100 text-rose-600 w-14 h-14 flex items-center justify-center rounded-full shadow-xl text-2xl"
-  >
-    <FaHeart />
-  </a>
+      <div className="fixed bottom-6 right-6 group z-50">
 
-  {/* Tooltip */}
-  <span className="absolute right-16 top-1/2 -translate-y-1/2 bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-    Download Invitation
-  </span>
+        <a
+          href={invitation}
+          download="wedding-invitation.jpg"
+          className="bg-white hover:bg-rose-100 text-rose-600 w-14 h-14 flex items-center justify-center rounded-full shadow-xl text-2xl"
+        >
+          <FaHeart />
+        </a>
 
-</div>
+        {/* Tooltip */}
+        <span className="absolute right-16 top-1/2 -translate-y-1/2 bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+          Download Invitation
+        </span>
+
+      </div>
 
 
 
