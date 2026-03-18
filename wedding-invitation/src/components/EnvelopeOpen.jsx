@@ -1,106 +1,137 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import islamicPattern from "../assets/islamic.jpg";
 
 export default function Envelope3D({ onOpen }) {
-
     const [opened, setOpened] = useState(false);
-    const [showBismillah, setShowBismillah] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowBismillah(false);
-        }, 3000);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     const handleOpen = () => {
         setOpened(true);
 
         setTimeout(() => {
             onOpen();
-        }, 1500);
+        }, 800);
     };
 
     return (
         <div className="relative h-screen flex items-center justify-center bg-gradient-to-br from-rose-100 to-rose-200">
 
-            {/* Islamic Pattern Background */}
+            {/* Background */}
             <div
                 className="absolute inset-0 bg-center bg-cover opacity-20"
                 style={{ backgroundImage: `url(${islamicPattern})` }}
             ></div>
 
-            {/* Bismillah Intro */}
-            {showBismillah && (
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 2 }}
-                    className="absolute text-center z-20"
-                >
-                    <h1 className="text-5xl md:text-6xl font-bold text-yellow-500 drop-shadow-lg">
-                        بِسْمِ ٱللّٰهِ ٱلرَّحْمٰنِ ٱلرَّحِيمِ
-                    </h1>
-
-                    <p className="mt-4 text-gray-600">
-                        In the name of Allah, the Most Merciful
-                    </p>
-                </motion.div>
-            )}
-
             {/* Envelope Section */}
-            {!showBismillah && (
-                <>
-                    <p className="absolute bottom-16 text-gray-600 text-lg">
-                        Tap the envelope 💌
-                    </p>
+            <>
+                {/* Envelope Container */}
+                <div
+                    className="relative w-80 h-56 cursor-pointer"
+                    onClick={handleOpen}
+                    style={{
+                        perspective: "1200px",
+                        transformStyle: "preserve-3d"
+                    }}
+                >
 
-                    <div
-                        className="relative w-80 h-56 cursor-pointer"
-                        onClick={handleOpen}
+                    {/* ✨ Sparkles */}
+                    {!opened && [...Array(12)].map((_, i) => (
+                        <motion.div
+                            key={i}
+                            className="absolute text-yellow-300 text-sm"
+                            style={{
+                                top: "50%",
+                                left: "50%"
+                            }}
+                            initial={{ opacity: 0 }}
+                            animate={{
+                                opacity: [0, 1, 0],
+                                x: (Math.random() - 0.5) * 120,
+                                y: (Math.random() - 0.5) * 80
+                            }}
+                            transition={{
+                                duration: 2,
+                                delay: i * 0.2,
+                                repeat: Infinity
+                            }}
+                        >
+                            ✨
+                        </motion.div>
+                    ))}
+
+                    {/* Envelope Body */}
+                    <motion.div
+                        animate={{
+                            scale: opened ? 1 : [1, 1.05, 1],
+                        }}
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute w-full h-full bg-rose-400 rounded-lg shadow-xl"
+                    />
+
+                    {/* Wax Seal */}
+                    <motion.div
+                        initial={{ scale: 1 }}
+                        animate={opened ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"
+                    >
+                        <div className="relative w-20 h-20 flex items-center justify-center rounded-full">
+
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-700 shadow-[0_6px_20px_rgba(255,215,0,0.6)]"></div>
+
+                            <div className="absolute inset-1 rounded-full border border-yellow-300"></div>
+
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/40 via-transparent to-transparent"></div>
+
+                            <motion.div
+                                className="absolute inset-0 rounded-full"
+                                animate={{ opacity: [0.2, 0.8, 0.2] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                            />
+
+                            <span className="relative font-bold text-lg tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+                                D ❤️ S
+                            </span>
+                        </div>
+                    </motion.div>
+
+                    {/* Envelope Flap */}
+                    <motion.div
+                        initial={{ rotateX: 0 }}
+                        animate={opened ? { rotateX: 180 } : { rotateX: 0 }}
+                        transition={{ duration: 1 }}
+                        className="absolute w-full h-28 bg-rose-500 origin-top"
                         style={{
-                            perspective: "1200px",
-                            transformStyle: "preserve-3d"
+                            clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
+                            transformStyle: "preserve-3d",
+                            backfaceVisibility: "hidden"
+                        }}
+                    ></motion.div>
+                </div>
+
+                {/* 👆 Tap Hint */}
+                {!opened && (
+                    <motion.div
+                        className="absolute bottom-10 text-3xl"
+                        animate={{
+                            y: [0, 10, 0],
+                            opacity: [0.5, 1, 0.5]
+                        }}
+                        transition={{
+                            duration: 1,
+                            repeat: Infinity
                         }}
                     >
-
-                        {/* Envelope Body */}
-                        <div className="absolute w-full h-full bg-rose-400 rounded-lg shadow-xl"></div>
-
-                        {/* Envelope Flap (opens to front) */}
-                        <motion.div
-                            initial={{ rotateX: 0 }}
-                            animate={opened ? { rotateX: 180 } : { rotateX: 0 }}
-                            transition={{ duration: 1 }}
-                            className="absolute w-full h-28 bg-rose-500 origin-top rounded-t-lg"
-                            style={{
-                                transformStyle: "preserve-3d",
-                                backfaceVisibility: "hidden"
-                            }}
-                        ></motion.div>
-
-                        {/* Invitation Card */}
-                        <motion.div
-                            initial={{ y: 40, opacity: 0 }}
-                            animate={opened ? { y: -120, opacity: 1 } : { y: 40, opacity: 0 }}
-                            transition={{ delay: 0.5, duration: 1 }}
-                            className="absolute left-4 right-4 top-10 bg-white rounded-lg shadow-lg p-4 text-center"
-                        >
-                            <h2 className="text-lg font-bold text-rose-700">
-                                Deena ❤️ Safwan
-                            </h2>
-
-                            <p className="text-sm text-gray-600">
-                                Wedding Invitation
-                            </p>
-                        </motion.div>
-
-                    </div>
-                </>
-            )}
-
+                        👆
+                    </motion.div>
+                )}
+            </>
         </div>
     );
 }

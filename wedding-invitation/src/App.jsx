@@ -9,6 +9,7 @@ import banner from "./assets/banner.jpeg"
 import story from "./assets/de.jpeg";
 import invitation from "./assets/invi.jpeg";
 import { FaHeart } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function App() {
 
@@ -281,9 +282,9 @@ function App() {
         </h2>
       </section>
 
-      
 
-      <div className="fixed bottom-6 right-6 group z-50">
+
+      {/* <div className="fixed bottom-6 right-6 group z-50">
 
         <a
           href={invitation}
@@ -293,12 +294,12 @@ function App() {
           <FaHeart />
         </a>
 
-        {/* Tooltip */}
+    
         <span className="absolute right-16 top-1/2 -translate-y-1/2 bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition">
           Download Invitation
         </span>
 
-      </div>
+      </div> */}
 
 
 
